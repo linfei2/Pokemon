@@ -10,7 +10,7 @@ class Pokemon:
   def lose_health(self, points):
     hp_after_loss = self.current_health - points
     if hp_after_loss <= 0:
-      return knock_out()
+      return self.knock_out()
     else:
       return self.name + " has " + str(hp_after_loss) + " health points left"
   
