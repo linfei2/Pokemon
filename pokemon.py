@@ -26,28 +26,21 @@ class Pokemon:
       return self.name + " knocked out"
 
   def attack(self, other_pokemon):
-    if self.typ == "Fire" and other_pokemon.typ == "Grass":
-      damage = self.level * 2
-    elif self.typ == "Fire" and other_pokemon.typ == "Water":
-      damage = self.level / 2
-    elif self.typ == "Water" and other_pokemon.typ == "Fire":
-      damage = self.level * 2
-    elif self.typ == "Water" and other_pokemon.typ == "Grass":
-      damage = self.level / 2
-    elif self.typ == "Grass" and other_pokemon.typ == "Water":
-      damage = self.level * 2
-    elif self.typ == "Grass" and other_pokemon.typ == "Fire":
-      damage = self.level / 2
+    poke_dict = {"Fire":0, "Water":2, "Grass":3}
+    p1 = poke_dict[self.typ]
+    p2 = poke_dict[other_pokemon.typ]
+    dif = p1 - p2
+    if dif in [-3, 2, 1]:
+      damage = self.level*2
+    elif dif in [-2, -1, 3]:
+      damage = self.level/2
     else:
       damage = self.level
-      
-    return other_pokemon.lose_health(damage)    
-    
+    return other_pokemon.lose_health(damage)   
 
 # Pokemony    
 charmander = Pokemon("Charmander", 5, "Fire", 100, 100, False)
 bulbasaur = Pokemon("Bulbasaur", 7, "Grass", 100, 100, False)
 psyduck = Pokemon("Psyduck", 6, "Water", 100, 100, False)
     
-
     
